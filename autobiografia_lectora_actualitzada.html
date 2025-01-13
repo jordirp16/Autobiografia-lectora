@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autobiografia Lectora Multimodal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: #4a90e2;
+            color: white;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+        .book {
+            width: 150px;
+            height: 200px;
+            margin: 10px;
+            position: relative;
+            cursor: pointer;
+        }
+        .book img {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 500px;
+        }
+        .modal-content img {
+            width: 100%;
+            max-height: 200px;
+            margin-bottom: 15px;
+        }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-size: 20px;
+            text-align: center;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>La Meua Autobiografia Lectora</h1>
+        <p>Explora la meua biblioteca interactiva i descobreix les històries que han marcat la meua vida.</p>
+    </div>
+
+    <div class="container">
+        <div class="book" onclick="openModal('infancia')">
+            <img src="https://via.placeholder.com/150" alt="Infància">
+        </div>
+        <div class="book" onclick="openModal('adolescencia')">
+            <img src="https://via.placeholder.com/150" alt="Adolescència">
+        </div>
+        <div class="book" onclick="openModal('adulta')">
+            <img src="https://via.placeholder.com/150" alt="Etapa Adulta">
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content" id="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+        </div>
+    </div>
+
+    <script>
+        const content = {
+            infancia: {
+                title: "Infància",
+                text: "Lectures com 'La rateta Marieta', 'El gran llibre dels contes' o 'Matilda' van marcar els meus primers anys com a lector. També em fascinaven els contes inventats pel meu pare i les històries de pirates i Roald Dahl.",
+                img: "https://via.placeholder.com/300x200",
+                audio: "https://example.com/audio-infancia.mp3"
+            },
+            adolescencia: {
+                title: "Adolescència",
+                text: "Vaig descobrir sagues com 'Memòries d'Idhun', còmics com 'Mortadelo i Filemón', 'Astèrix i Obèlix' i llibres de teatre que em captivaven, especialment els de Pasqual Alapont i Rodolf Sirera.",
+                img: "https://via.placeholder.com/300x200",
+                audio: "https://example.com/audio-adolescencia.mp3"
+            },
+            adulta: {
+                title: "Etapa Adulta",
+                text: "M'apassionen la novel·la històrica i negra, així com assajos d'autors valencians com Joan Fuster. També he gaudit de novel·les gràfiques com 'Los surcos del azar' o 'Maus'.", 
+                img: "https://via.placeholder.com/300x200",
+                audio: "https://example.com/audio-adulta.mp3"
+            }
+        };
+
+        function openModal(category) {
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modal-content');
+            const data = content[category];
+
+            modalContent.innerHTML = `
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+                <h2>${data.title}</h2>
+                <img src="${data.img}" alt="${data.title}">
+                <p>${data.text}</p>
+                <audio controls>
+                    <source src="${data.audio}" type="audio/mpeg">
+                    El teu navegador no suporta l'element d'àudio.
+                </audio>
+            `;
+
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
